@@ -11,7 +11,6 @@ use Magento\Framework\Exception\LocalizedException;
 use \Mageplaza\GiftCard\Helper\Data;
 class Save extends \Magento\Backend\App\Action
 {
-
     protected $_helperData ;
     protected $dataPersistor;
     protected $giftCardFactory;
@@ -38,9 +37,13 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $config =  $this->_helperData->getCodeConfig('length');
-        $codeRand =  $this->_helperData->generateGiftCode($config);
         $data = $this->getRequest()->getPostValue();
+        if(isset($data['length'])){
+            $length = $data['length'];
+        }else{
+            $length=$this->_helperData->getCodeConfig('length');
+        }
+        $codeRand =  $this->_helperData->generateGiftCode($length);
         if(isset($data['code'])){
             $code = $data['code'];
         }else{

@@ -47,7 +47,7 @@
                         <message translate="true">Are you sure you want to delete selected items?</message>
                         <title translate="true">Delete items</title>
                     </confirm>
-                    <url path="/giftcard/giftcard/MassDelete"/>
+                    <url path="*/*/massdelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                 </settings>
