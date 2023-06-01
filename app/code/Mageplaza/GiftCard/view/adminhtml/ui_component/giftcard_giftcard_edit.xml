@@ -2,7 +2,7 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">giftcard_giftcard_form.giftcard_code_form_data_source</item>
+			<item name="provider" xsi:type="string">giftcard_giftcard_edit.giftcard_edit_data_source</item>
 		</item>
 		<item name="label" xsi:type="string" translate="true">General Information</item>
 		<item name="template" xsi:type="string">templates/form/collapsible</item>
@@ -14,13 +14,13 @@
 			<button name="save" class="Mageplaza\GiftCard\Block\Adminhtml\GiftCard\Edit\SaveButton"/>
 			<button name="save_and_continue" class="Mageplaza\GiftCard\Block\Adminhtml\GiftCard\Edit\SaveAndContinueButton"/>
 		</buttons>
-		<namespace>giftcard_giftcard_form</namespace>
+		<namespace>giftcard_giftcard_edit</namespace>
 		<dataScope>data</dataScope>
 		<deps>
-			<dep>giftcard_giftcard_form.giftcard_code_form_data_source</dep>
+			<dep>giftcard_giftcard_edit.giftcard_edit_data_source</dep>
 		</deps>
 	</settings>
-	<dataSource name="giftcard_code_form_data_source">
+	<dataSource name="giftcard_edit_data_source">
 		<argument name="data" xsi:type="array">
 			<item name="js_config" xsi:type="array">
 				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
@@ -29,7 +29,7 @@
 		<settings>
 			<submitUrl path="*/*/save"/>
 		</settings>
-		<dataProvider name="giftcard_code_form_data_source" class="Mageplaza\GiftCard\Model\GiftCard\DataProvider">
+		<dataProvider name="giftcard_edit_data_source" class="Mageplaza\GiftCard\Model\GiftCard\DataProvider">
 			<settings>
 				<requestFieldName>giftcard_id</requestFieldName>
 				<primaryFieldName>giftcard_id</primaryFieldName>
@@ -44,18 +44,20 @@
 			<settings>
 				<dataType>text</dataType>
 				<label translate="true">Balance</label>
+				<dataScope>balance</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>
 				</validation>
 			</settings>
 		</field>
-		<field name="length" formElement="input" sortOrder="30" class="Mageplaza\GiftCard\Ui\Component\Form\Field\CodeLength" >
+		<field name="length" formElement="input" sortOrder="30">
          <argument name="data" xsi:type="array">
              <item name="config" xsi:type="array">
-                 <item name="label" xsi:type="string">Length</item>
+                 <item name="label" xsi:type="string">Code</item>
                  <item name="visible" xsi:type="boolean">true</item>
                  <item name="dataType" xsi:type="string">text</item>
-                 <item name="default" xsi:type="string"></item>
+                 <item name="formElement" xsi:type="string">input</item>
+                 <item name="dataScope" xsi:type="string">code</item>
              </item>
          </argument>
 		</field>
@@ -64,6 +66,7 @@
                     <item name="config" xsi:type="array">
                         <item name="fieldGroup" xsi:type="string">group_id</item>
                         <item name="source" xsi:type="string">customer</item>
+                        <item name="default" xsi:type="number">0</item>
                     </item>
                 </argument>
                 <settings>

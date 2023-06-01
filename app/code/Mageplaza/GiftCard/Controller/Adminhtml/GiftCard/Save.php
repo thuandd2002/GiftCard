@@ -8,10 +8,11 @@ declare(strict_types=1);
 namespace Mageplaza\GiftCard\Controller\Adminhtml\GiftCard;
 
 use Magento\Framework\Exception\LocalizedException;
-
+use \Mageplaza\GiftCard\Helper\Data;
 class Save extends \Magento\Backend\App\Action
 {
 
+    protected $_helperData ;
     protected $dataPersistor;
     protected $giftCardFactory;
     /**
@@ -20,9 +21,11 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
+         Data $helperData,
         \Mageplaza\GiftCard\Model\GiftCardFactory $giftCardFactory,
         \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
     ) {
+        $this->_helperData = $helperData;
         $this->giftCardFactory = $giftCardFactory;
         $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
@@ -35,10 +38,18 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+        $config =  $this->_helperData->getCodeConfig('length');
+        $codeRand =  $this->_helperData->generateGiftCode($config);
         $data = $this->getRequest()->getPostValue();
+        if(isset($data['code'])){
+            $code = $data['code'];
+        }else{
+            $code = $codeRand;
+        }
         $id = !empty($data['giftcard_id']) ? $data['giftcard_id'] : null;
         $newData = [  
             'balance' => $data['balance'],
+            'code' => $code,
         ];
         $giftCard = $this->giftCardFactory->create();
         if($id){

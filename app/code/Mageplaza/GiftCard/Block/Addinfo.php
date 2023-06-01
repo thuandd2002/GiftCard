@@ -27,9 +27,6 @@ class AddInfo extends \Magento\Framework\View\Element\Template
     }
 
     public function getGiftCardByIdCustumer(){
-
-        
-
         $id = $this->customerSession->getCustomer()->getId();
         $collection = $this->_giftCardHistory->create();
         // $history = $historyColection->addFieldToSelect('*')->addFieldToFilter('customer_id', ['eq' => $id])->getCollection();

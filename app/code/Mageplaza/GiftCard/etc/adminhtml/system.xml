@@ -22,14 +22,13 @@
                 <field id="allow" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Allow Redeem Gift Card</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-               
+                </field>              
             </group>
             <group id="code" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Code Configuration</label>
-              <field id="length" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="length" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">  
                     <label>Code length</label>
-                   <validate>required-number</validate>
+                    <validate>validate-not-negative-number</validate>
                 </field>
             </group>
         </section>

@@ -3,8 +3,8 @@
     <table name="giftcard_code" resource="default" engine="innodb" comment="Table comment">
         <column xsi:type="int" name="giftcard_id" padding="11" unsigned="false" nullable="false" identity="true" comment=""/>
         <column xsi:type="varchar" name="code" nullable="false"/>
-        <column xsi:type="decimal" name="balance" nullable="false" scale="4" precision="12"/>
-        <column xsi:type="decimal" name="amount_used" nullable="false" scale="4" precision="12"/>
+        <column xsi:type="decimal" name="balance" nullable="false" scale="2" precision="12"/>
+        <column xsi:type="decimal" name="amount_used" nullable="false" scale="2" precision="12"/>
         <column xsi:type="int" name="create_from" nullable="false"/>
        <column xsi:type="timestamp" name="create_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">

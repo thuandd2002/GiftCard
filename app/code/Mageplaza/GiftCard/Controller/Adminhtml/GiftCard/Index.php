@@ -37,9 +37,12 @@ class Index extends \Magento\Backend\App\Action
      */
     public function execute()
     {   
-    //  
+    
+        // $config =  $this->helperData->getCodeConfig('length');
+        // $radom =  $this->helperData->generateGiftCode($config);
+        // dd($radom);
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("GiftCard"));
+        $resultPage->getConfig()->getTitle()->prepend(__("GiftCard"));
         return $resultPage;
         
     }
