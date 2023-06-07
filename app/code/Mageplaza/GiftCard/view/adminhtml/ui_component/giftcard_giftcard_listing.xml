@@ -128,7 +128,7 @@
 		<column name="create_from">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">Create_from</label>
+				<label translate="true">Create From</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>
@@ -140,7 +140,7 @@
 		<column name="create_at" class="Mageplaza\GiftCard\Ui\Component\Listing\Column\Date" component="Magento_Ui/js/grid/columns/date">
 			<settings>
 				<filter>datetime</filter>
-				<label translate="true">Create_at</label>
+				<label translate="true">Create At</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>

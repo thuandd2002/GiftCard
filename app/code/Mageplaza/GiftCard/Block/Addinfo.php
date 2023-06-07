@@ -29,11 +29,11 @@ class AddInfo extends \Magento\Framework\View\Element\Template
     public function getGiftCardByIdCustumer(){
         $id = $this->customerSession->getCustomer()->getId();
         $collection = $this->_giftCardHistory->create();
-        // $history = $historyColection->addFieldToSelect('*')->addFieldToFilter('customer_id', ['eq' => $id])->getCollection();
         $second_table_name = $this->_resource->getTableName('giftcard_code'); 
+        $third_table_name = $this->_resource->getTableName('customer_entity'); 
         $collection->join(array('giftcard_code' => $second_table_name),
-        'main_table.giftcard_id = giftcard_code.giftcard_id');
-        // return $history;
+        'main_table.giftcard_id = giftcard_code.giftcard_id')->join(array('customer_entity'=>$third_table_name),'main_table.customer_id=customer_entity.entity_id');
+        $collection->addFieldToFilter('customer_id',['eq'=>$id]);
         return $collection;
     }
 

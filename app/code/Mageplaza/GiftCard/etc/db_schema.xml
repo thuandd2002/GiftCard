@@ -5,7 +5,7 @@
         <column xsi:type="varchar" name="code" nullable="false"/>
         <column xsi:type="decimal" name="balance" nullable="false" scale="2" precision="12"/>
         <column xsi:type="decimal" name="amount_used" nullable="false" scale="2" precision="12"/>
-        <column xsi:type="int" name="create_from" nullable="false"/>
+        <column xsi:type="varchar" name="create_from" nullable="false"/>
        <column xsi:type="timestamp" name="create_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="giftcard_id"/>
@@ -18,9 +18,9 @@
         <column xsi:type="int" name="history_id" padding="12" unsigned="false" nullable="false" identity="true" comment=""/>
         <column xsi:type="int" name="giftcard_id" nullable="false"/>
         <column xsi:type="int" name="customer_id" nullable="false" unsigned="true" padding="11"/>
-        <column xsi:type="varchar" name="amount" nullable="false"/>
+        <column xsi:type="int" name="amount" nullable="false"/>
         <column xsi:type="varchar" name="action" nullable="false"/>
-        <column xsi:type="datetime" name="action_time" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="action_time" nullable="false" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="history_id"/>
         </constraint>

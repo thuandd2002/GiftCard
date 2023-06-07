@@ -1,0 +1,45 @@
+<?php
+
+namespace Abc\Def\Controller\Index;
+
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Customer\Model\Customer;
+
+class Def extends Action
+{
+    protected $customerCollection;
+
+    public function __construct(Context $context,PageFactory $resultPageFactory,Customer $customerCollection,\Magento\Customer\Api\CustomerRepositoryInterface $customerRepository)
+    {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+        $this->customerRepository = $customerRepository;
+        $this->customerCollection = $customerCollection;
+    }
+
+    public function execute()
+    {
+
+        $randomletter = 1
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+        if($customerSession->isLoggedIn())
+        {
+            $customer = $this->customerRepository->getById($customerSession->getCustomerId());
+            $customer->getCustomAttribute('custom_field');
+            $customer->setCustomAttribute('custom_field',$randomletter);
+            try
+            {                
+                $customer = $this->customerRepository->save($customer);
+            }
+            catch (Exception $e)
+            {
+                return $e->getMessage();
+            }
+        }
+    }
+}
+\Magento\Customer\Model\ResourceModel\CustomerRepositoryFactory $customerRepositoryFactory,
+$customerRepository = $this->customerRepositoryFactory->create();

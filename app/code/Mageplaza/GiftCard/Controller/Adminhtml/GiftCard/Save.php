@@ -53,6 +53,7 @@ class Save extends \Magento\Backend\App\Action
         $newData = [  
             'balance' => $data['balance'],
             'code' => $code,
+            'create_from'=>"admin"
         ];
         $giftCard = $this->giftCardFactory->create();
         if($id){

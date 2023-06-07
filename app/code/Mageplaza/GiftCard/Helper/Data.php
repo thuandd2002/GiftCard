@@ -23,6 +23,7 @@ class Data extends AbstractHelper
 	{
 		return $this->getConfigValue(self::XML_PATH_HELLOWORLD .'code/'. $code, $storeId);
 	}
+	
 	function generateGiftCode($length) {
 		$characters = 'ABCDEFGHIJKLMLOPQRSTUVXYZ0123456789';
 		$charactersLength = strlen($characters);

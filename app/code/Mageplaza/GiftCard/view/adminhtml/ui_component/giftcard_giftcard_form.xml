@@ -45,7 +45,9 @@
 				<dataType>text</dataType>
 				<label translate="true">Balance</label>
 				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+					<rule name="validate-integer" xsi:type="boolean">true</rule>
+					<rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
@@ -58,6 +60,13 @@
                  <item name="default" xsi:type="string"></item>
              </item>
          </argument>
+			<settings>
+			 	<validation>
+				<rule name="required-entry" xsi:type="boolean">true</rule>
+					<rule name="validate-integer" xsi:type="boolean">true</rule>
+					<rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
 		</field>
 		 <!-- <field name="disable_auto_group_change" formElement="checkbox" class="Magento\Customer\Ui\Component\Form\Field\DisableAutoGroupChange">
                 <argument name="data" xsi:type="array">
