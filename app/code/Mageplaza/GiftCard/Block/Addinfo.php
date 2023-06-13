@@ -34,7 +34,8 @@ class AddInfo extends \Magento\Framework\View\Element\Template
         $collection->join(array('giftcard_code' => $second_table_name),
         'main_table.giftcard_id = giftcard_code.giftcard_id')->join(array('customer_entity'=>$third_table_name),'main_table.customer_id=customer_entity.entity_id');
         $collection->addFieldToFilter('customer_id',['eq'=>$id]);
-        return $collection;
+        $collection-> setOrder('history_id','DESC');
+        return $collection->setPageSize(8);
     }
 
     public function checkEnableConfig()

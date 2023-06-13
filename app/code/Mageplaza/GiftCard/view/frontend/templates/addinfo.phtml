@@ -42,7 +42,7 @@ $historyCollection = $block->getGiftCardByIdCustumer()->getData();
             <thead>
                 <th>STT</th>
                 <th>Date</th>
-                <th>Amount</th>
+            
                 <th>Code</th>
                 <th>Action</th>
             </thead>
@@ -51,8 +51,9 @@ $historyCollection = $block->getGiftCardByIdCustumer()->getData();
             <tr>
                 <td><?= $index+1 ?></td>
                 <td><?= $item['create_at'] ?></td>
-                <td><?= $item['amount_used'] ?></td>
+              
                 <td><?= $item['code'] ?></td>
+                <td><?= $item['action'] ?></td>
             </tr>
         <?php endforeach?>
             </tbody>

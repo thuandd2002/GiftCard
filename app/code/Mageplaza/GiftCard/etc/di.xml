@@ -13,4 +13,13 @@
             <argument name="resourceModel" xsi:type="string">Mageplaza\GiftCard\Model\ResourceModel\GiftCard\Collection</argument>
         </arguments>
     </virtualType>
+
+    <type name="Magento\Checkout\Controller\Cart\CouponPost">
+        <plugin name="coupon.post" type="Mageplaza\GiftCard\Plugin\CouponPost" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\Coupon">
+        <plugin name="coupon.post" type="Mageplaza\GiftCard\Plugin\GetCouponCode" sortOrder="1" disabled="false" />
+    </type>
+    <!-- <preference for="Magento\Checkout\Model\Session" type="Mageplaza\GiftCard\Preference\Checkout\Model\Session" /> -->
+
 </config>
