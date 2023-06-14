@@ -4,7 +4,6 @@ namespace Mageplaza\GiftCard\Plugin;
 
 class CouponPost
 {
-
     protected $_escaper;
     protected $resultFactory;
     protected $giftCard;
@@ -13,6 +12,7 @@ class CouponPost
     protected $quoteRepository;
     protected $_checkoutSession;
     protected $_messageManager;
+    protected $_helper;
     public function __construct(
         \Mageplaza\GiftCard\Model\ResourceModel\GiftCard\CollectionFactory $giftCard,
         \Magento\Framework\Escaper $_escaper,
@@ -22,7 +22,8 @@ class CouponPost
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\SalesRule\Model\CouponFactory $couponFactory,
-        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
+        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
+        \Mageplaza\GiftCard\Helper\Data $_helper,
     ) {
         $this->giftCard = $giftCard;
         $this->resultFactory = $resultFactory;
@@ -32,6 +33,7 @@ class CouponPost
         $this->cart = $cart;
         $this->_messageManager = $messageManager;
         $this->_checkoutSession = $checkoutSession;
+        $this->_helper = $_helper;
     }
 
     function aroundExecute(\Magento\Checkout\Controller\Cart\CouponPost $object, callable $proceed)
@@ -56,7 +58,9 @@ class CouponPost
         foreach ($giftCard as $items) {
             $id = $items['giftcard_id'];
         }
+        $configuration = $this->_helper->getGeneralConfig('used');
         if ($id!=null) {
+           if($configuration == 1){
             $this->_checkoutSession->getQuote()->setCouponCode($couponCode)->save();
             $this->_checkoutSession->setCodeCustom($couponCode);
             $this->_messageManager->addSuccessMessage(
@@ -66,6 +70,15 @@ class CouponPost
                 )
             );
             return $redirect;
+           }else {
+            $this->_messageManager->addErrorMessage(
+                __(
+                    'Admin has disabled this feature',
+                )
+            );
+            return $redirect;
+           }
+           
         }else{
             $this->_checkoutSession->unsCodeCustom();
             $result = $proceed();

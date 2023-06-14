@@ -63,8 +63,6 @@ class GiftCard implements \Magento\Framework\Event\ObserverInterface
                 $lengthCode = $this->_helperData->getCodeConfig('length'); 
                 if($productAmount != null){
                     for($i =0; $i < $qtiVitural; $i++){
-                   
-                     
                         $giftCode = $this->_helperData->generateGiftCode($lengthCode);
                         $newData = [  
                             'balance' => $productAmount,
@@ -85,6 +83,6 @@ class GiftCard implements \Magento\Framework\Event\ObserverInterface
                 }
             }
         }
-
+        $this->_checkoutSession->unsCodeCustom();
     }
 }

@@ -33,6 +33,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         $label = 'My Custom Discount';
         $code =  $this->_checkoutSession->getCodeCustom();
         $TotalAmount = 0;
+        if(isset($code)){
             $giftCard =  $this->_giftCard->create();
             $items = $giftCard->addFieldToFilter('code',['eq'=>$code])->getData();
             if (!empty($items)) {
@@ -43,6 +44,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
                 $TotalAmount = $total->getSubtotal();   
                 $TotalAmount = 0;
             }
+        }     
         $discountAmount = "-" . $TotalAmount;
         $appliedCartDiscount = 0;
         if ($total->getDiscountDescription()) {

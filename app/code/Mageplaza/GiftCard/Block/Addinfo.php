@@ -45,7 +45,7 @@ class AddInfo extends \Magento\Framework\View\Element\Template
     }
     
     public function checkAllowConfig(){
-        $config = $this->_helperData->getGeneralConfig('used');
+        $config = $this->_helperData->getGeneralConfig('allow');
         return $config;
     }
 }
