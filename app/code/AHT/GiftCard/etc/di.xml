@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="giftcard_giftcard_listing_data_source" xsi:type="string">AHT\GiftCard\Model\ResourceModel\GiftCard\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="AHT\GiftCard\Model\ResourceModel\GiftCard\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">giftcard_code</argument>
+            <argument name="resourceModel" xsi:type="string">AHT\GiftCard\Model\ResourceModel\GiftCard\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Controller\Cart\CouponPost">
+        <plugin name="coupon.post" type="AHT\GiftCard\Plugin\CouponPost" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\Coupon">
+        <plugin name="coupon.post" type="AHT\GiftCard\Plugin\GetCouponCode" sortOrder="1" disabled="false" />
+    </type>
+    <!-- <preference for="Magento\Checkout\Model\Session" type="AHT\GiftCard\Preference\Checkout\Model\Session" /> -->
+
+</config>

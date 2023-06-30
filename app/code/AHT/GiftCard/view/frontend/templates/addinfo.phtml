@@ -1,0 +1,66 @@
+<?php
+/** @var \AHT\GiftCard\Block\Template $block */
+$a = $block->checkEnableConfig();
+$b = $block->checkAllowConfig();
+$historyCollection = $block->getGiftCardByIdCustumer()->getData();
+?>
+
+<div class="template">
+    <?php if($a == 1 ){?>
+        <div class="page-title-wrapper"><h1>Gift Card Information</h1></div>
+
+        <?php if($b == 1 ){?>
+            <strong>Redeem</strong>
+
+<form class="form" action="<?=$block->getUrl('*/*/redeem')?>" method="post">
+    <fieldset class="fieldset">
+        <br>
+        <div class="field required">
+            <label for="code" class="label">
+                <span><?php /* @escapeNotVerified */ echo __('Input') ?></span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="code"
+                       name="code"
+                       class="input-text">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+
+</form>
+<?php }?>
+        <div class="block block-dashboard-addresses"><div class="block-title"><strong>History</strong></div></div>
+        <table>
+            <thead>
+                <th>STT</th>
+                <th>Date</th>
+                <th>Balance</th>
+                <th>Code</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+            <?php foreach($historyCollection as $index => $item): ?>  
+            <tr>
+                <td><?= $index+1 ?></td>
+                <td><?= $item['create_at'] ?></td>
+                <td><?=$item['balance']?></td>
+                <td><?= $item['code'] ?></td>
+                <td><?= $item['action'] ?></td>
+            </tr>
+        <?php endforeach?>
+            </tbody>
+        </table>
+<?php }
+else{ ?>
+        <h1 class="page-title-wrapper">Admin da tat tinh nang nay </h1>
+<?php }?>
+
+</div>

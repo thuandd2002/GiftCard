@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AHT_GiftCard::index" title="AHT" module="AHT_GiftCard" sortOrder="10" resource="AHT_GiftCard::index"/>
+        <add id="AHT_GiftCard::gird" title="Manage Codes" module="AHT_GiftCard" sortOrder="10" resource="AHT_GiftCard::gird" parent="AHT_GiftCard::index" action="giftcard/giftcard/index"/>
+        <add id="AHT_GiftCard::configuration" title="Configuration" module="AHT_GiftCard" sortOrder="20" resource="AHT_GiftCard::configuration" parent="AHT_GiftCard::index" action="adminhtml/system_config/edit/section/gift_section_id/"/>
+    </menu>
+</config>
